@@ -7,5 +7,6 @@ namespace API
         public string name;
         public int weight;
         public int base_experience;
+        public int height;
     }
 }

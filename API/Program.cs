@@ -9,17 +9,35 @@ namespace API
         static void Main(string[] args)
         {
 
-            RestClient client = new RestClient("https://pokeapi.co/api/v2/");
+            RestClient client = new RestClient("https://pokeapi.co/api/v2/pokemon/");
 
-            RestRequest request = new RestRequest("pokemon/charmander");
+            Console.WriteLine("Please write a pokemon's name and check if they exist in this game");
+            string pokemonName = Console.ReadLine().ToLower();
+            Console.Clear();
 
+            RestRequest request = new RestRequest(pokemonName);
             IRestResponse response = client.Get(request);
 
-            //Console.WriteLine(response.Content);
+            while (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Console.WriteLine("That pokemon does not exist in this game." +
+                "Please write a pokemon's name and check if they exist in this game");
 
-            Pokemon charmander = JsonConvert.DeserializeObject<Pokemon>(response.Content);
+                pokemonName = Console.ReadLine().ToLower();
+                Console.Clear();
 
-            Console.WriteLine(charmander.base_experience);
+                request = new RestRequest(pokemonName);
+                response = client.Get(request);
+            }
+
+            
+
+            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
+
+            Console.WriteLine("Name: " + pokemon.name);
+            Console.WriteLine("Base experience: " + pokemon.base_experience);
+            Console.WriteLine("Weight: " + pokemon.weight);
+            Console.WriteLine("Height: " + pokemon.height);
 
             Console.ReadLine();
             
