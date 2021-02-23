@@ -34,10 +34,10 @@ namespace API
 
             Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
 
-            Console.WriteLine("Name: " + pokemon.name);
-            Console.WriteLine("Base experience: " + pokemon.base_experience);
-            Console.WriteLine("Weight: " + pokemon.weight);
-            Console.WriteLine("Height: " + pokemon.height);
+            Console.WriteLine("Name: " + pokemon.Name);
+            Console.WriteLine("Base experience: " + pokemon.BaseExperience);
+            Console.WriteLine("Weight: " + pokemon.Weight);
+            Console.WriteLine("Height: " + pokemon.Height);
 
             Console.ReadLine();
             

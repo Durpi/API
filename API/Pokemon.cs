@@ -1,12 +1,17 @@
 using System;
+using Newtonsoft.Json;
 
 namespace API
 {
     public class Pokemon
     {
-        public string name;
-        public int weight;
-        public int base_experience;
-        public int height;
+        public string Name {get; set;}
+
+        public int Weight {get; set;}
+
+        [JsonProperty("base_experience")]
+        public int BaseExperience {get; set;}
+
+        public int Height {get; set;}
     }
 }
